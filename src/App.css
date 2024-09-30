@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+/* src/App.css */
+body {
+  background-color: #f8f9fa; /* Light background for the page */
+}
+
+.welcome {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.product-list .card {
+  margin: 10px;
+}
+/* src/App.css */
+.card {
+  transition: transform 0.3s; /* Smooth transformation for hover effect */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Scale up card on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+
+
+/* src/App.css */
+.card {
+  transition: transform 0.3s; /* Smooth transformation for hover effect */
+  height: 100%; /* Make the card take full height */
+}
+
+.card-img-top {
+  height: 200px; /* Set a fixed height for the images */
+  object-fit: cover; /* Maintain the aspect ratio and cover the area */
+}
+
+.card-body {
+  display: flex; /* Flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: space-between; /* Space items evenly */
+  height: 100%; /* Make card body take up full height */
+}
