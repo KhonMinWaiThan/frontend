@@ -8,8 +8,8 @@ import CategorySidebar from './CategorySidebar'; // Import your sidebar componen
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All'); // Manage selected category state
-  const apiBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'; // Base URL from environment
-
+  const apiBaseUrl = process.env.REACT_APP_API_URL; // Base URL from environment
+//  || 'http://localhost:5000'
   useEffect(() => {
     const fetchProducts = async () => {
       try {
