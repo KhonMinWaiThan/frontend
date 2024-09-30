@@ -12,11 +12,13 @@ const ProductDetail = () => {
 
     const { addToCart } = useCart(); // Access addToCart function from context
 
+    const apiBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'; // Base URL from environment
+
     useEffect(() => {
         const fetchProduct = async () => {
             setLoading(true); // Start loading
             try {
-                const response = await axios.get(`http://localhost:5000/api/product/${id}`); // Fetch product by ID
+                const response = await axios.get(`${apiBaseUrl}/api/product/${id}`); // Fetch product by ID
                 setProduct(response.data); // Set product data
                 setLoading(false); // Stop loading
             } catch (error) {
@@ -26,7 +28,7 @@ const ProductDetail = () => {
         };
 
         fetchProduct();
-    }, [id]);
+    }, [id, apiBaseUrl]);
 
     if (loading) {
         return <div>Loading...</div>; // Show loading indicator

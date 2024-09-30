@@ -1,34 +1,39 @@
-// src/components/Checkout.js
 import React, { useState } from 'react';
-import { useCart } from '../context/CartContext'; // Import the Cart context
+import { useCart } from '../context/CartContext'; // Ensure proper path and usage
 
 const Checkout = () => {
+    const { cartItems, clearCart } = useCart(); // This should provide both cartItems and clearCart
     const [address, setAddress] = useState('');
     const [cardNumber, setCardNumber] = useState('');
-    const [expiration, setExpiration] = useState(''); // Format MM/YY
+    const [expiration, setExpiration] = useState('');
     const [cvv, setCvv] = useState('');
-    const [error, setError] = useState(''); // Error message state
-    const [message, setMessage] = useState(''); // Success message state
+    const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleCheckout = (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
+        event.preventDefault();
 
-        // Basic validation for the address field
         if (!address) {
-            setError('Address is required'); // Set an error message if address is missing
+            setError('Address is required');
             return;
         }
 
-        // Log the order details (This is where you might integrate with a payment API)
-        console.log('Order about to be processed with address:', address);
+        if (cartItems.length === 0) {
+            setError('Your cart is empty.');
+            return;
+        }
 
-        // Simulate an order placement success
-        setMessage('Order placed successfully!'); // Set success message
-        clearCart(); // Clear the cart after a successful checkout
+        console.log('Order processed with address:', address);
 
-        // Reset form fields
-        setAddress(''); // Reset the address field
-        setError(''); // Clear error message after successful order
+        setMessage('Order placed successfully!');
+        clearCart();
+
+        // Reset fields
+        setAddress('');
+        setCardNumber('');
+        setExpiration('');
+        setCvv('');
+        setError('');
     };
 
     return (
@@ -38,8 +43,8 @@ const Checkout = () => {
                 <p>Your cart is empty! Add items to your cart before checkout.</p>
             ) : (
                 <form onSubmit={handleCheckout}>
-                    {message && <div className="alert alert-success">{message}</div>} {/* Success message */}
-                    {error && <div className="alert alert-danger">{error}</div>} {/* Error message */}
+                    {message && <div className="alert alert-success">{message}</div>}
+                    {error && <div className="alert alert-danger">{error}</div>}
                     
                     <div className="form-group">
                         <label>Shipping Address:</label>
